@@ -1,5 +1,5 @@
 define(['tip',
-        'anchor/class'],
+        'class'],
 function(Tip, clazz) {
   
   function Popover(el, options) {
