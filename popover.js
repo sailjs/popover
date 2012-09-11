@@ -1,6 +1,7 @@
-define(['tip',
+define(['overlay',
+        'tip',
         'class'],
-function(Tip, clazz) {
+function(Overlay, Tip, clazz) {
   
   function Popover(el, options) {
     options = options || {};
@@ -8,6 +9,29 @@ function(Tip, clazz) {
     Popover.super_.call(this, el, options);
   }
   clazz.inherits(Popover, Tip);
+  
+  Popover.prototype.overlay = function(options) {
+    options = options || {};
+    var self = this
+      , template = options.template || 'overlay';
+    this._overlay = new Overlay(template, options);
+    this._overlay.on('hide', function(){
+      self._overlay = null;
+      self.hide();
+      return true;
+    });
+    return this;
+  };
+  
+  Popover.prototype.pop = function(el) {
+    if (this._overlay) this._overlay.show();
+    this.show(el);
+  }
+  
+  Popover.prototype.remove = function() {
+    if (this._overlay) this._overlay.remove();
+    Popover.super_.prototype.remove.call(this);
+  };
   
   return Popover;
 });
