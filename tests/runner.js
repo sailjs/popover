@@ -1,6 +1,7 @@
 require.config({
   paths:{
     'popover': '../',
+    'overlay': '../vendor/overlay',
     'tip': '../vendor/tip',
     'view': '../vendor/view',
     'sail': '../vendor/sail',
