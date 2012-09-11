@@ -23,9 +23,9 @@ function(Overlay, Tip, clazz) {
     return this;
   };
   
-  Popover.prototype.pop = function(el) {
+  Popover.prototype.show = function(el) {
     if (this._overlay) this._overlay.show();
-    this.show(el);
+    Popover.super_.prototype.show.call(this, el);
   }
   
   Popover.prototype.remove = function() {
