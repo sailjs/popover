@@ -12,11 +12,12 @@ function(Overlay, Tip, clazz) {
   
   Popover.prototype.overlay = function(options) {
     options = options || {};
+    options.autoRemove = this._autoRemove;
     var self = this
       , template = options.template || 'overlay';
     this._overlay = new Overlay(template, options);
-    this._overlay.on('hide', function(){
-      self._overlay = null;
+    this._overlay.on('hide', function() {
+      if (this._autoRemove) self._overlay = null;
       self.hide();
       return true;
     });
