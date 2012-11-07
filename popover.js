@@ -7,6 +7,14 @@ function(Overlay, Tip, clazz) {
     options = options || {};
     options.className = options.className || 'popover';
     Popover.super_.call(this, el, options);
+    
+    var self = this
+      , el = this.el;
+    el.find('.close').on('click', function(){
+      self.emit('close');
+      self.hide(0, true);
+      return false;
+    });
   }
   clazz.inherits(Popover, Tip);
   
@@ -27,6 +35,13 @@ function(Overlay, Tip, clazz) {
   Popover.prototype.show = function(el) {
     if (this._overlay) this._overlay.show();
     Popover.super_.prototype.show.call(this, el);
+  }
+  
+  Popover.prototype.hide = function(ms, btn) {
+    if (btn) {
+      if (this._overlay) this._overlay.hide();
+    }
+    Popover.super_.prototype.hide.call(this, ms);
   }
   
   Popover.prototype.remove = function() {
