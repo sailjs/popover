@@ -25,7 +25,7 @@
   "volo": {
     "baseUrl": "vendor",
     "dependencies": {
-      "clazz": "github:anchorjs/class/master",
+      "class": "github:anchorjs/class/master",
       "tip": "github:sailjs/tip/master",
       "overlay": "github:sailjs/overlay/master"
     }
