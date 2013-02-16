@@ -1,7 +1,5 @@
-define(['popover/popover',
-        'chai'],
-function(Popover, chai) {
-  var expect = chai.expect;
+define(['popover'],
+function(Popover) {
 
   describe("popover", function() {
     
