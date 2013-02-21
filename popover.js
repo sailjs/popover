@@ -25,7 +25,7 @@ function(Overlay, Tip, clazz) {
       , template = options.template || 'overlay';
     this._overlay = new Overlay(template, options);
     this._overlay.on('hide', function() {
-      if (this._autoRemove) self._overlay = null;
+      if (self._autoRemove) self._overlay = null;
       self.hide();
       return true;
     });
@@ -46,7 +46,12 @@ function(Overlay, Tip, clazz) {
   
   Popover.prototype.remove = function() {
     if (this._overlay) this._overlay.remove();
-    Popover.super_.prototype.remove.call(this);
+    return Popover.super_.prototype.remove.call(this);
+  };
+  
+  Popover.prototype.dispose = function() {
+    if (this._overlay) this._overlay.dispose();
+    return Popover.super_.prototype.dispose.call(this);
   };
   
   return Popover;
